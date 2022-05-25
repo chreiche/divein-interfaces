@@ -1,0 +1,814 @@
+{
+	"info": {
+		"_postman_id": "7d60b041-d275-4bca-b17f-5bf581db250a",
+		"name": "API DiveIn",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Task 1",
+			"item": [
+				{
+					"name": "GET lucky_number",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8000/lucky_number",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"lucky_number"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Task 2",
+			"item": [
+				{
+					"name": "GET greetings without parameter",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8000/greetings",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"greetings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET greetings with parameter",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8000/greetings?name=DiveIn",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"greetings"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "DiveIn"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Task 3",
+			"item": [
+				{
+					"name": "GET weekday without Header",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8000/weekday_calculator",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"weekday_calculator"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET weekday with invalid header",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "n",
+								"value": "5,5",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "localhost:8000/weekday_calculator",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"weekday_calculator"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET weekday with valid header",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "n",
+								"value": "5",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "localhost:8000/weekday_calculator",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"weekday_calculator"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Task 4",
+			"item": [
+				{
+					"name": "GET login without basic auth",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8000/login",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET login with invalid basic auth",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "test",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "DiveIn",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8000/login",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET login with valid basic auth",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "1234",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "DiveIn",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8000/login",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Task 5",
+			"item": [
+				{
+					"name": "Create",
+					"item": [
+						{
+							"name": "POST employee with missing body",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "1234",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "DiveIn",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8000/employee",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"employee"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "POST employee with invalid body",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "1234",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "DiveIn",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"DiveIn\",\n    \"age\": \"old\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8000/employee",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"employee"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "POST employee with valid headers",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "1234",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "DiveIn",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"DiveIn\",\n    \"age\": \"42\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8000/employee",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"employee"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Read",
+					"item": [
+						{
+							"name": "GET employee without header",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "1234",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "DiveIn",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8000/employee",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"employee"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET employee without a valid id",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "1234",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "DiveIn",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "id",
+										"value": "five",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "localhost:8000/employee",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"employee"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET employee with not used id",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "1234",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "DiveIn",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "id",
+										"value": "0",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "localhost:8000/employee",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"employee"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET employee with valid id",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "1234",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "DiveIn",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "id",
+										"value": "1",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "localhost:8000/employee",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"employee"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Update",
+					"item": [
+						{
+							"name": "PUT employee with missing body",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "1234",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "DiveIn",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "localhost:8000/employee",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"employee"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "PUT employee with invalid age",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "1234",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "DiveIn",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "id",
+										"value": "2",
+										"type": "default"
+									},
+									{
+										"key": "name",
+										"value": "DiveIn",
+										"type": "default"
+									},
+									{
+										"key": "age",
+										"value": "old",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "localhost:8000/employee",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"employee"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "PUT employee with valid headers",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "1234",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "DiveIn",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"id\": 2,\n    \"name\": \"Bob\",\n    \"age\": 99\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8000/employee",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"employee"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Delete",
+					"item": [
+						{
+							"name": "DELETE employee with missing id header",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "1234",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "DiveIn",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "localhost:8000/employee",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"employee"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DELETE employee with invalid id header",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "1234",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "DiveIn",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "id",
+										"value": "five",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "localhost:8000/employee",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"employee"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DELETE employee with valid but not exisiting id",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "1234",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "DiveIn",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "id",
+										"value": "-5",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "localhost:8000/employee",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"employee"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DELETE employee with valid id",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "1234",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "DiveIn",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "id",
+										"value": "1",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "localhost:8000/employee",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"employee"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}
