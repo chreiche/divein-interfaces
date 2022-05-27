@@ -13,6 +13,8 @@ COPY ./src/ /work/src
 
 FROM dev as runtime
 
+WORKDIR /app
+
 ENV PYTHONPATH=/app
 
 COPY ./src/ /app/src
