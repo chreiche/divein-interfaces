@@ -1,0 +1,155 @@
+openapi: 3.0.0
+info:
+  title: CRUD
+  description: Simple API to test CRUD
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080
+    description: Localhost for testing
+paths:
+  /employee:
+    get:
+      summary: get all employees
+      description: get all employees
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                      age:
+                        type: integer
+              example: {1:{"name":"Alice", "age": 20}, 2:{"name":"Bob", "age":50}}
+        '400':
+          description: Bad Request
+    post:
+      summary: create an employee
+      description: create an employee
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                age:
+                  type: integer
+            example: {"name":"Alice", "age": 20}
+      responses:
+        '201':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  name:
+                    type: string
+                  age:
+                    type: integer
+              example: {"id":1,"name":"Alice", "age": 20}
+        '400':
+          description: Bad Request
+    put:
+      summary: update an employee
+      description: update an employee
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: integer
+                name:
+                  type: string
+                age:
+                  type: integer
+            example: {"id":1, "name":"Alice", "age": 20}
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  name:
+                    type: string
+                  age:
+                    type: integer
+              example: {"id":1,"name":"Alice", "age": 20}
+        '400':
+          description: Bad Request
+        '404':
+          description: Employee not found
+  /employee/{id}:
+    get:
+      summary: get an employees
+      description: get an employees
+      parameters: 
+      - name: "id"
+        in: "path"
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: object
+                  name:
+                    type: string
+                  age:
+                    type: integer
+              example: {"id":1,"name":"Alice", "age": 20}
+        '404':
+          description: Employee not found
+    delete:
+      summary: get an employees
+      description: get an employees
+      parameters: 
+      - name: "id"
+        in: "path"
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: object
+                  name:
+                    type: string
+                  age:
+                    type: integer
+              example: {"id":1,"name":"Alice", "age": 20}
+        '204':
+          description: Employee not found
+        '400':
+          description: Bad Request
+                  

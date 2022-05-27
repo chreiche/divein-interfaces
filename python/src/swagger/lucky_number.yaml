@@ -1,0 +1,21 @@
+openapi: 3.0.0
+info:
+  title: Lucky Number
+  description: Simple API to get your lucky number for today!
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080
+    description: Localhost for testing
+paths:
+  /lucky_number:
+    get:
+      summary: Returns your lucky number
+      description: This endpoint yields your lucky number
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "Your lucky number for the day is: 52"

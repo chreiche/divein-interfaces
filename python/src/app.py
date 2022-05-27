@@ -92,10 +92,12 @@ consider implementing user_loader() with check for DiveIn:1234
 
 """
 
+
 def user_loader(username, password):
     # check for username = DiveIn and password = 1234
 
     return {'username': username}
+
 
 class LoginResource(object):
     def on_get(self, req, resp):
@@ -121,9 +123,57 @@ class EmployeeResource(object):
     """
     Read
 
+    GET /employee/{id}
+
+    by calling this endpoint with the 'id' a response is expected like
+
+    200 {
+            "id": 1,
+            "name": "Alice",
+            "age": 20
+        }
+
+    if the id does not correspond to an id in the db a status code 404 is expected with some information that no resource for the id is not found    
+
+    consider using the backend feature 'db.read(id=id)'
+    """
+
+    def on_get(self, req, resp, id):
+
+        resp.text = "implement me"
+        resp.status = falcon.HTTP_200
+
+    """
+    Delete
+
+    DELETE /employee/{id}
+
+    by calling this endpoint with 'id' a response is expected like
+
+    200 {
+            "id": 4
+            "name": "DiveIn",
+            "age": 99
+        }
+
+    if the resource for the header 'id' is not found in the backend a status code 204 is expected with some information on the missing resource
+
+    consider using the backend feature 'db.delete(id=id)'
+    """
+
+    def on_delete(self, req, resp, id):
+
+        resp.text = "implement me"
+        resp.status = falcon.HTTP_200
+
+
+class EmployeesResource(object):
+    """
+    Read
+
     GET /employee
 
-    by calling this endpoint with the header 'id' a response is expected like
+    by calling this endpoint a response is expected like
 
     200 {
           "1": {
@@ -140,18 +190,7 @@ class EmployeeResource(object):
           }
       }
 
-    if the endpoint is called without an header 'id' of type int a response is expected like
-
-    200 {
-            "id": 1,
-            "name": "Alice",
-            "age": 20
-        }
-
-    if the header 'id' is no valid int a status code 400 is expected with some information how to provide the value
-    if the id does not correspond to an id in the db a status code 404 is expected with some information that no resource for the id is not found    
-
-    consider using the backend feature 'db.get_all()' and 'db.read(id=id)'
+    consider using the backend feature 'db.get_all()'
     """
 
     def on_get(self, req, resp):
@@ -225,32 +264,6 @@ class EmployeeResource(object):
         resp.text = json.dumps(payload)
         resp.status = falcon.HTTP_200
 
-    """
-    Delete
-
-    DELETE /employee
-
-    by calling this endpoint with the header 'id' a response is expected like
-
-    200 {
-            "id": 4
-            "name": "DiveIn",
-            "age": 99
-        }
-
-    if the endpoint is called without the header 'id' a status code 400 is expected with some information on the needed header
-    if the header 'id' is not a valid int a status code 400 is expected with some information on the expexted data type 
-    if the resource for the header 'id' is not found in the backend a status code 204 is expected with some information on the missing resource
-
-    consider using the backend feature 'db.delete(id=id)'
-    """
-
-    def on_delete(self, req, resp):
-
-        resp.text = "implement me"
-        resp.status = falcon.HTTP_200
-
-
 
 auth_backend = BasicAuthBackend(user_loader)
 auth_middleware = FalconAuthMiddleware(auth_backend,
@@ -264,6 +277,7 @@ lucky_number_endpoint = LuckyNumberResource()
 greeting_endpoint = GreetingResource()
 weekday_calculator_endpoint = WeekdayCalculatorResource()
 login_endpoint = LoginResource()
+employees_endpoint = EmployeesResource()
 employee_endpoint = EmployeeResource()
 
 api.add_route('/example', example_endpoint)
@@ -271,4 +285,5 @@ api.add_route('/lucky_number', lucky_number_endpoint)
 api.add_route('/greetings', greeting_endpoint)
 api.add_route('/weekday_calculator', weekday_calculator_endpoint)
 api.add_route('/login', login_endpoint)
-api.add_route('/employee', employee_endpoint)
+api.add_route('/employee', employees_endpoint)
+api.add_route('/employee/{id:int}', employee_endpoint)

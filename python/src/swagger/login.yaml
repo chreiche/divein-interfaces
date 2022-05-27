@@ -1,0 +1,28 @@
+openapi: 3.0.0
+info:
+  title: Login
+  description: Simple API to test basicAuth
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080
+    description: Localhost for testing
+paths:
+  /login:
+    get:
+      summary: only get messages with correct username and password
+      description: This endpoint yields the login message
+      security: 
+      - BasicAuth: []
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "Login successful"
+components:
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic

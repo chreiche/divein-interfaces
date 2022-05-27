@@ -1,0 +1,36 @@
+openapi: 3.0.0
+info:
+  title: Weekday Calculator
+  description: Simple API to get a weekday n days from today
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080
+    description: Localhost for testing
+paths:
+  /weekday_calculator:
+    get:
+      summary: Returns a the weekday in n days
+      description: This endpoint yields the weekday in n days
+      parameters: 
+        - in: header
+          name: n
+          schema:
+            type: number
+            format: float
+          required: true
+          description: Number of days from now to calculate the weekday
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "5 days from now is a Wednesday"
+        '400':
+          description: Query parameter n missing or not valid
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "Query parameter n missing or not valid"

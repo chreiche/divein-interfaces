@@ -49,9 +49,7 @@ db.create(name="Charles", age=50)
 
 
 class EmployeeResource(object):
-    def on_get(self, req, resp):
-
-        id = req.get_header("id", required=False)
+    def on_get(self, req, resp, id):
 
         if id:
             try:
@@ -70,6 +68,30 @@ class EmployeeResource(object):
             resp.text = f"no employee found with id: {id}"
             resp.status = falcon.HTTP_404
             return
+
+        resp.status = falcon.HTTP_400
+
+    def on_delete(self, req, resp, id):
+        try:
+            id = int(id)
+        except ValueError:
+            resp.text = f"{id} is no valid int! Valid examples are 0, 1, 2"
+            resp.status = falcon.HTTP_400
+            return
+
+        res = db.delete(id=id)
+
+        if res:
+            resp.text = json.dumps(res)
+            resp.status = falcon.HTTP_200
+            return
+
+        resp.text = f"no employee found with id: {id}"
+        resp.status = falcon.HTTP_204
+
+
+class EmployeesResource(object):
+    def on_get(self, req, resp):
 
         resp.text = json.dumps(db.get_all())
         resp.status = falcon.HTTP_200
@@ -123,26 +145,6 @@ class EmployeeResource(object):
         resp.text = f"no employee found with id: {id}"
         resp.status = falcon.HTTP_404
 
-    def on_delete(self, req, resp):
-        id = req.get_header("id", required=True)
-
-        try:
-            id = int(id)
-        except ValueError:
-            resp.text = f"{id} is no valid int! Valid examples are 0, 1, 2"
-            resp.status = falcon.HTTP_400
-            return
-
-        res = db.delete(id=id)
-
-        if res:
-            resp.text = json.dumps(res)
-            resp.status = falcon.HTTP_200
-            return
-
-        resp.text = f"no employee found with id: {id}"
-        resp.status = falcon.HTTP_204
-
 
 def user_loader(username, password):
     user = {"DiveIn": "1234"}
@@ -164,10 +166,12 @@ lucky_number_endpoint = LuckyNumberResource()
 greeting_endpoint = GreetingResource()
 weekday_calculator_endpoint = WeekdayCalculatorResource()
 login_endpoint = LoginResource()
+employees_endpoint = EmployeesResource()
 employee_endpoint = EmployeeResource()
 
 api.add_route('/lucky_number', lucky_number_endpoint)
 api.add_route('/greetings', greeting_endpoint)
 api.add_route('/weekday_calculator', weekday_calculator_endpoint)
 api.add_route('/login', login_endpoint)
-api.add_route('/employee', employee_endpoint)
+api.add_route('/employee', employees_endpoint)
+api.add_route('/employee/{id:int}', employee_endpoint)
