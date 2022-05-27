@@ -17,6 +17,6 @@ ENV PYTHONPATH=/app
 
 COPY ./src/ /app/src
 
-EXPOSE 8080
+EXPOSE 8000
 
-ENTRYPOINT ["gunicorn", "--reload src.app"]
+ENTRYPOINT ["gunicorn", "--reload", "-b :8000", "src.app"]
