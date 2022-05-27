@@ -36,9 +36,9 @@ Task 2:
 
 GET /greetings
 
-by calling this endpoint with a mendatory parameter 'name' an response is expected like
+by calling this endpoint with a mandatory parameter 'name' an response is expected like
 
-200 Welcome Bob
+200 Welcome DiveIn
 
 if the parameter 'name' is omitted a status code 400 is expected with some details on the missing parameter
 
@@ -64,7 +64,7 @@ by calling this endpoint with a mendatory header 'n' an response is expected lik
 if the header 'n' is omitted a status code 400 is expected with some details on the missing header
 if the header 'n' is not a valid float a status code 400 is expected with some details on expected data type
 
-consider implementing user_loader() with check for DiveIn:1234
+consider using the backend feature 'day_calculator.get_weekday_in_n_days(n)'
 
 """
 
@@ -81,17 +81,21 @@ Task 4:
 
 GET /login
 
-by calling this endpoint with the mendatory baseAuth header (username: DiveIn password: 1234) an response is expected like
+by calling this endpoint with the mandatory baseAuth header (username: DiveIn password: 1234) an response is expected like
 
 200 Login successful!
 
 if the baseAuth header is omitted a status code 401 is expected with some details on the missing baseAuth
-if no valid username and/or passoword are provided a status code 401 is expected with the hint that username/password is invalid
+if no valid username and/or password are provided a status code 401 is expected with the hint that username/password is invalid
 
-consider using the backend feature 'day_calculator.get_weekday_in_n_days(n)'
+consider implementing user_loader() with check for DiveIn:1234
 
 """
 
+def user_loader(username, password):
+    # check for username = DiveIn and password = 1234
+
+    return {'username': username}
 
 class LoginResource(object):
     def on_get(self, req, resp):
@@ -145,7 +149,7 @@ class EmployeeResource(object):
         }
 
     if the header 'id' is no valid int a status code 400 is expected with some information how to provide the value
-    if the id does not correspond to an id in the db a status code 404 is expected with some information that no ressource for the id is not found    
+    if the id does not correspond to an id in the db a status code 404 is expected with some information that no resource for the id is not found    
 
     consider using the backend feature 'db.get_all()' and 'db.read(id=id)'
     """
@@ -246,11 +250,6 @@ class EmployeeResource(object):
         resp.text = "implement me"
         resp.status = falcon.HTTP_200
 
-
-def user_loader(username, password):
-    # check for username = DiveIn and password = 1234
-
-    return {'username': username}
 
 
 auth_backend = BasicAuthBackend(user_loader)
